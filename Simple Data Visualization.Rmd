@@ -1,0 +1,74 @@
+---
+title: "Simple Data Visualization"
+author: "Mastoras Giannis"
+date: "2022-11-04"
+output: html_document
+---
+# Queen ALbum Characteristics
+
+```{r, echo=TRUE, warning=FALSE}
+library(readr)
+library(ggplot2)
+library(ggridges)
+queen <- read_csv("queen.csv")
+```
+
+
+#(a)
+```{r, echo=TRUE, warning=FALSE}
+queen_barplot<-ggplot(data=queen,aes(y=album_name))+
+  geom_bar(color="yellow",fill="lightblue")
+queen_barplot
+```
+
+
+#(b)
+```{r, echo=TRUE, warning=FALSE}
+queen_hist<-ggplot(data=queen,aes(x=tempo,fill=mode))+
+  geom_histogram(bins = 15)
+queen_hist
+```
+
+
+#(c)
+```{r, echo=TRUE, warning=FALSE}
+queen_boxplots<-ggplot(data=queen,aes(x=tempo,y=album_name))+
+  geom_boxplot(,color="yellow",fill="lightblue")
+queen_boxplots
+```
+
+
+#(d)
+```{r, echo=TRUE, warning=FALSE}
+queen_faceted_sc<- ggplot(data=queen, aes(danceability, energy,size=tempo)) + 
+  geom_point(data = transform(queen)) + 
+  geom_point() +
+  facet_wrap(~album_name) + 
+  theme_bw()
+queen_faceted_sc
+```
+
+
+#(e)
+```{r, echo=TRUE, warning=FALSE}
+queen_violin<-ggplot(data = queen,aes(y=album_name,x=track_popularity))+
+  geom_violin(,color="yellow",fill="lightblue")
+queen_violin
+
+queen_ridge<-ggplot(data=queen, aes(x = album_popularity, y = album_name)) +
+  geom_density_ridges_gradient(scale = 3, rel_min_height = 0.01,color="yellow",fill="lightblue") +
+  labs(title = 'Album Popularity') 
+queen_ridge
+```
+
+# McDonalds BIG MAC price
+```{r, echo=TRUE, warning=FALSE}
+library(tidyverse)
+mc_data <- read_csv("mcdonalds.csv")
+mc_data<-mc_data %>%
+  mutate(USD_Price=mc_data$local_price/mc_data$dollar_ex)
+mc_data<-na.omit(mc_data)
+scatter_plot<-plot(x=mc_data$USD_Price,y=mc_data$GDP_dollar,main = "Scatterplot Between USD Price and GDP",
+                   xlab = "USD Price", ylab = "GDP",pch=10)
+
+```
