@@ -1,6 +1,6 @@
 <h1>Simple Data Visualization</h1>
 <p><strong>Data Visualization on McDonald's and Queen Albums Characteristics</strong></p>
-
+<p><strong>I used RStudio for my plots</strong></p>
 <h2>Description</h2>
 
 <h3>Dataset 1: queen.csv</h3>
